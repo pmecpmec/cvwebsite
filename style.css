@@ -17,3 +17,18 @@
   --h2-font: 2rem;
   --p-font: 1.1rem;
 }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+}
