@@ -45,6 +45,7 @@ span {
   color: var(--main-color);
 }
 .navlist {
+  list-style: none;
   display: flex;
 }
 .navlist a {
