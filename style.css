@@ -16,6 +16,7 @@
     --big-font: 5rem;
     --h2-font: 2rem;
     --p-font: 1.1rem;
+    --color: inherit;
 }
 
 body {
