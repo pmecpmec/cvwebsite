@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pmec.dev</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <p class="loading-text">Loading...</p>
+    </div>
 
-  <body>
-    <header>
-      <a href="#home" class="logo">pm<span>e</span>c.</a>
-      <ul class="navlist">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#aboutme">About me</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contactme">Contact Me</a></li>
-      </ul>
-      <div class="bx bx-menu" id="menu-icon"></div>
+    <header class="fadeIn" data-delay="0.5s">
+        <a href="#home" class="logo fadeIn" data-delay="1s">
+            <img src="image/logo.png" alt="Logo" class="logo-img" />
+        </a>
+        <ul class="navlist fadeIn" data-delay="1.5s">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#aboutme">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contactme">Contact Me</a></li>
+        </ul>
+        <div class="bx bx-menu fadeIn" data-delay="2s" id="menu-icon"></div>
     </header>
-    <section class="home">
-      <div class="home-text">
-        <div class="slide">
-          <span class="one">Hello</span>
-          <span class="two">I'm</span>
+    
+    <section class="home fadeIn" id="home" data-delay="1s">
+        <div class="home-text">
+            <div class="slide fadeIn" data-delay="1.5s">
+                <span class="one">Hello</span>
+                <span class="two">I'm</span>
+            </div>
+            <h1 class="fadeIn" data-delay="2s">Pedro</h1>
+            <h3 class="fadeIn" data-delay="2.5s">Software <span id="developer">Developer</span></h3>
+            <p class="fadeIn" data-delay="3s">Software Student at Windesheim Almere</p>
+            <a href="#contactme" class="btn fadeIn" data-delay="3.5s">Say Hello!</a>
         </div>
-        <h1>Pedro</h1>
-        <h3>Software <span id="developer"> Developer</span></h3>
-        <p>Software Student at Windesheim Almere</p>
-        <div class="button"></div>
-        <a href="#" class="btn">Say Hello!</a>
-        <a href="#" class="btn2"
-          ><span><i class="bx bx-play"></i></span>Check out my work!</a
-        >
-      </div>
     </section>
-    <section>Hello</section>
-    <script type="text/javascript" src="js/script.js"></script>
-  </body>
+
+    <section id="aboutme" class="aboutme fadeIn" data-delay="1.5s">
+        <div class="aboutme-text">
+            <h2>Who am I?</h2>
+            <p>I am a 22-year-old Software Developer originally from Portugal and currently living in the Netherlands.</p>
+            <h3>Hobbies</h3>
+            <p>I'm really passionate about technology and am always looking for new challenges.</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
 </html>

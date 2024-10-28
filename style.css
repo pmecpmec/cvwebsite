@@ -1,3 +1,4 @@
+/* General Reset and Variables */
 * {
     padding: 0;
     margin: 0;
@@ -13,39 +14,65 @@
     --text-color: #fff;
     --second-color: #ccc;
     --main-color: #75285e;
-    --big-font: 5rem;
-    --h2-font: 2rem;
-    --p-font: 1.1rem;
-    --color: inherit;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow: hidden; /* Prevent scrolling during loading */
 }
 
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+    z-index: 9999; /* Ensure it's above other content */
+}
+
+.loading-text {
+    color: var(--text-color);
+    font-size: 24px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Header */
 header {
     position: fixed;
     width: 100%;
     top: 0;
-    right: 0;
-    z-index: 1000;
     display: flex;
     justify-content: space-between;
-    background: transparent;
     padding: 22px 15%;
-    border-bottom: 1px solid transparent;
+    align-items: center;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--second-bg-color);
+    z-index: 1000;
 }
 
 .logo {
     color: var(--text-color);
     font-size: 35px;
     font-weight: 700;
-    letter-spacing: 1px;
-}
-
-span {
-    color: var(--main-color);
 }
 
 .navlist {
@@ -56,15 +83,12 @@ span {
 .navlist a {
     color: var(--second-color);
     font-size: 17px;
-    font-weight: 500px;
-    margin: 25px;
-    transition: all 0.45s ease;
+    font-weight: 500;
+    margin: 0 25px;
+    transition: color 0.45s ease;
 }
 
-.navlist a:hover {
-    color: var(--main-color);
-}
-
+.navlist a:hover,
 .navlist a:active {
     color: var(--main-color);
 }
@@ -72,50 +96,145 @@ span {
 #menu-icon {
     font-size: 35px;
     color: var(--text-color);
-    z-index: 100001;
     cursor: pointer;
-    margin-left: 25px;
     display: none;
 }
 
-section {
-    padding: 160px 15% 120px;
+@media (max-width: 768px) {
+    .navlist {
+        display: none;
+    }
+    #menu-icon {
+        display: block;
+    }
 }
 
+/* Home Section */
 .home {
     position: relative;
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
     width: 100%;
-    background-image: url("https://lh3.googleusercontent.com/paW7_AGHleX_wB_-phmvmdP2OG2YUPbNQMfz2z8AE8lkis_F6hI_iz3J9yEJm-6nnxM=w2400");
-    background-position: center;
-    background-size: cover;
+    background-image: url("image/background.jpg");
+    background-position: center 20%; /* Centers the image */
+    background-size: cover; /* Scales the image to cover the section */
+    background-repeat: no-repeat; /* Avoids image repetition */
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Keeps text aligned to the left */
+    padding: 0 15%; /* Adjust as needed */
 }
 
-.slide {
-    margin-bottom: 20px;
+.home-text {
+    max-width: 600px;
+    color: var(--text-color);
+    opacity: 0;
+    margin-right: auto; /* Pushes it to the left */
+    animation: fadeInSlideUp 1s ease forwards;
+    animation-delay: 0.6s;
 }
 
-.one {
-    display: inline-block;
-    margin-right: 15px;
-    height: 32px;
+.one, #developer {
+    background: var(--main-color);
+    color: var(--text-color);
     padding: 0 15px;
     line-height: 32px;
     font-size: 20px;
-    font-weight: 500;
     border-radius: 5px;
-    background: var(--main-color);
-    color: var(--text-color)
 }
 
-#developer{
-    text-shadow: 0px 0px 10px #2a2a2a;
-    background: var(--main-color);
+/* About Me Section */
+.aboutme {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 100px 15%;
+    background: var(--second-bg-color);
+    border-radius: 10px;
+    margin: 40px 0;
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.aboutme h2 {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.aboutme h3 {
+    font-size: 1.5rem;
     color: var(--text-color);
-    line-height: 32px;
-    padding: 0 7px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.aboutme p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--second-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: var(--main-color);
+    color: var(--text-color);
     border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #9b406e;
+}
+
+/* Keyframes */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    header {
+        padding: 20px 10%;
+    }
+    .aboutme {
+        flex-direction: column;
+        padding: 50px 10%;
+    }
+}
+
+@media (max-width: 576px) {
+    .home-text h1 {
+        font-size: 3rem;
+    }
+    .home-text h3 {
+        font-size: 1.5rem;
+    }
+}
+
+.logo-img {
+    height: 60px; /* Adjust based on logo dimensions */
+    width: auto;
+    margin-right: 10px;
+    transition: transform 0.3s;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05); /* Slight hover effect */
+}
+
+body.loading {
+    overflow: hidden; /* Disable scrolling */
 }
