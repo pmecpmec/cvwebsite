@@ -9,18 +9,28 @@
 }
 
 :root {
-    --bg-color: #2a2a2a;
-    --second-bg-color: #202020;
-    --text-color: #fff;
-    --second-color: #ccc;
-    --main-color: #75285e;
+    --bg-color: #2a2a2a;           /* Background base color */
+    --second-bg-color: rgba(32, 32, 32, 0.9); /* Slight transparency for layered effect */
+    --text-color: #f1f1f1;         /* Light text for readability */
+    --second-color: #d1d1d1;       /* Soft grey for secondary text */
+    --main-color: #5D3FD3;         /* Accent color derived from pattern */
+    --highlight-color: #9b406e;    /* Additional highlight color */
 }
 
+
 body {
-    background-color: var(--bg-color);
+    background-image: url("image/nami.png"); /* Your pattern */
+    background-position: center center; /* Centers the image */
+    background-size: 20px 20px; /* Adjust the size of each pattern square */
+    background-repeat: repeat; /* Makes the background repeat */
+    background-color: var(--bg-color); /* Fallback background color */
     color: var(--text-color);
+    font-family: 'League Spartan', sans-serif;
     overflow: hidden; /* Prevent scrolling during loading */
 }
+
+
+
 
 /* Loading Screen */
 .loading-screen {
@@ -37,23 +47,110 @@ body {
     z-index: 9999; /* Ensure it's above other content */
 }
 
-.loading-text {
-    color: var(--text-color);
-    font-size: 24px;
-    animation: pulse 1s infinite;
+/* Three-Dot Loader */
+.three-body {
+    --uib-size: 35px;
+    --uib-speed: 0.8s;
+    --uib-color: #5D3FD3;
+    position: relative;
+    display: inline-block;
+    height: var(--uib-size);
+    width: var(--uib-size);
+    animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
 }
 
-@keyframes pulse {
+.three-body__dot {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+}
+
+.three-body__dot:after {
+    content: '';
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: var(--uib-color);
+    border-radius: 50%;
+}
+
+.three-body__dot:nth-child(1) {
+    bottom: 5%;
+    left: 0;
+    transform: rotate(60deg);
+    transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(1)::after {
+    bottom: 0;
+    left: 0;
+    animation: wobble1 var(--uib-speed) infinite ease-in-out;
+    animation-delay: calc(var(--uib-speed) * -0.3);
+}
+
+.three-body__dot:nth-child(2) {
+    bottom: 5%;
+    right: 0;
+    transform: rotate(-60deg);
+    transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(2)::after {
+    bottom: 0;
+    left: 0;
+    animation: wobble1 var(--uib-speed) infinite
+        calc(var(--uib-speed) * -0.15) ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
+    bottom: -5%;
+    left: 0;
+    transform: translateX(116.666%);
+}
+
+.three-body__dot:nth-child(3)::after {
+    top: 0;
+    left: 0;
+    animation: wobble2 var(--uib-speed) infinite ease-in-out;
+}
+
+@keyframes spin78236 {
     0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
+        transform: rotate(0deg);
     }
     100% {
-        transform: scale(1);
+        transform: rotate(360deg);
     }
 }
+
+@keyframes wobble1 {
+    0%,
+    100% {
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-66%) scale(0.65);
+        opacity: 0.8;
+    }
+}
+
+@keyframes wobble2 {
+    0%,
+    100% {
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(66%) scale(0.65);
+        opacity: 0.8;
+    }
+}
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Quicksand:wght@400&display=swap');
+
 
 /* Header */
 header {
@@ -62,30 +159,53 @@ header {
     top: 0;
     display: flex;
     justify-content: space-between;
-    padding: 22px 15%;
+    padding: 20px 10%; /* Adjusted for tighter layout */
     align-items: center;
-    background: var(--bg-color);
+    background: transparent;
     border-bottom: 1px solid var(--second-bg-color);
-    z-index: 1000;
+    z-index: 1000; /* Ensures it's on top of other sections */
 }
 
+/* Logo Styling */
 .logo {
-    color: var(--text-color);
-    font-size: 35px;
-    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
+.logo-big {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 2.5em; /* Adjust font size */
+    font-weight: 700;
+    color: #ffffff; /* Adjust color for better contrast */
+    letter-spacing: 0.1px;
+}
+
+.logo-small {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.8rem; /* Adjust font size */
+    color: #ffffff; /* Adjust color for better contrast */
+    letter-spacing: 0.1em;
+    margin-top: -11px; /* Adjust spacing between lines */
+    margin-left: 18px;
+    font-weight: bold;
+}
+
+/* Navigation Styling */
 .navlist {
     list-style: none;
     display: flex;
+    margin: 0;
 }
 
 .navlist a {
     color: var(--second-color);
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
-    margin: 0 25px;
+    margin: 0 20px;
+    text-decoration: none;
     transition: color 0.45s ease;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .navlist a:hover,
@@ -93,6 +213,7 @@ header {
     color: var(--main-color);
 }
 
+/* Menu Icon for Mobile */
 #menu-icon {
     font-size: 35px;
     color: var(--text-color);
@@ -109,20 +230,24 @@ header {
     }
 }
 
-/* Home Section */
+
+
+
 .home {
     position: relative;
     height: 100vh; /* Full viewport height */
     width: 100%;
-    background-image: url("image/background.jpg");
-    background-position: center 20%; /* Centers the image */
-    background-size: cover; /* Scales the image to cover the section */
-    background-repeat: no-repeat; /* Avoids image repetition */
+    background-image: url("image/nami.png"); /* Your pattern */
+    background-position: center center; /* Keeps the image centered */
+    background-size: 20px 20px; /* Adjust the size of each pattern square */
+    background-repeat: repeat; /* Makes the background repeat */
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Keeps text aligned to the left */
     padding: 0 15%; /* Adjust as needed */
+    animation: fadeInSlideUp 1s ease forwards;
 }
+
 
 .home-text {
     max-width: 600px;
@@ -143,6 +268,7 @@ header {
 }
 
 /* About Me Section */
+/* About Me Section */
 .aboutme {
     display: flex;
     gap: 30px;
@@ -156,24 +282,70 @@ header {
     animation-delay: 0.8s;
 }
 
-.aboutme h2 {
-    font-size: 2rem;
-    color: var(--main-color);
-    margin-bottom: 10px;
+/* Card Style */
+.card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(-45deg, var(--main-color) 0%, var(--highlight-color) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-.aboutme h3 {
-    font-size: 1.5rem;
+.card svg {
+    width: 48px;
+    fill: var(--bg-color);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card:hover {
+    transform: rotate(-5deg) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--second-bg-color);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card:hover .card__content {
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 1;
+}
+
+.card__title {
+    margin: 0;
+    font-size: 24px;
     color: var(--text-color);
-    margin-top: 20px;
-    margin-bottom: 10px;
+    font-weight: 700;
 }
 
-.aboutme p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+.card__description {
+    margin: 10px 0 0;
+    font-size: 14px;
     color: var(--second-color);
+    line-height: 1.4;
 }
+
+.card:hover svg {
+    scale: 0;
+    transform: rotate(-45deg);
+}
+
+
 
 /* Buttons */
 .btn {
@@ -238,3 +410,231 @@ header {
 body.loading {
     overflow: hidden; /* Disable scrolling */
 }
+
+/* Experience Section */
+.experience {
+    padding: 100px 15%;
+    background: var(--second-bg-color);
+    border-radius: 10px;
+    margin: 40px 0;
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease forwards;
+    animation-delay: 1.8s; /* Adjust delay as needed */
+}
+
+.experience h2 {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.experience p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--second-color);
+}
+
+/* Portfolio Section */
+.portfolio {
+    padding: 100px 15%;
+    background: var(--bg-color);
+    border-radius: 10px;
+    margin: 40px 0;
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease forwards;
+    animation-delay: 2s;
+}
+
+.portfolio h2 {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.portfolio p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--second-color);
+}
+
+/* Contact Me Section */
+.contactme {
+    padding: 100px 15%;
+    background: var(--second-bg-color);
+    border-radius: 10px;
+    margin: 40px 0;
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease forwards;
+    animation-delay: 2.2s; /* Adjust delay as needed */
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow to make it pop */
+}
+
+.contactme h2 {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-bottom: 10px;
+    font-weight: 600; /* Slightly bolder title */
+}
+
+.contactme p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--second-color);
+    margin-bottom: 20px;
+}
+
+/* Contact Form */
+.contactme form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px; /* Ensure padding for spacing */
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+/* Form Fields */
+.contactme input[type="text"],
+.contactme input[type="email"],
+.contactme textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s; /* Smooth border color change */
+}
+
+.contactme input[type="text"]:focus,
+.contactme input[type="email"]:focus,
+.contactme textarea:focus {
+    border-color: var(--main-color); /* Focus effect */
+    outline: none;
+}
+
+.contactme textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Submit Button */
+.contactme input[type="submit"] {
+    padding: 12px 30px;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover */
+}
+
+.contactme input[type="submit"]:hover {
+    background-color: #9b406e;
+    transform: translateY(-2px); /* Slight hover lift effect */
+}
+
+.contactme input[type="submit"]:active {
+    transform: translateY(1px); /* Subtle press effect */
+}
+
+/* Social Links */
+.contactme .social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.contactme .social-links a {
+    color: var(--main-color);
+    font-size: 1.5rem;
+    transition: color 0.3s, transform 0.3s; /* Smooth hover transition */
+}
+
+.contactme .social-links a:hover {
+    color: var(--text-color);
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .contactme form {
+        padding: 20px 15px; /* Adjust padding */
+    }
+    
+    .contactme input[type="submit"] {
+        width: 100%; /* Make the submit button full width on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .contactme h2 {
+        font-size: 1.75rem; /* Adjust title size for mobile */
+    }
+
+    .contactme p {
+        font-size: 1rem; /* Adjust text size for mobile */
+    }
+
+    .contactme input[type="submit"] {
+        padding: 12px 20px; /* Adjust button size */
+    }
+
+    .contactme .social-links a {
+        font-size: 1.2rem; /* Make social links slightly smaller */
+    }
+}
+
+
+/* Fade-in and fade-out transitions */
+.fade-section {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s ease-in-out; /* Smooth opacity transition */
+}
+
+/* When the section is in view (triggered by JavaScript) */
+.fadeIn {
+    opacity: 1; /* Fade in */
+}
+
+/* When the section leaves the viewport (triggered by JavaScript) */
+.fadeOut {
+    opacity: 0; /* Fade out */
+}
+
+/* Optional: If you want to add animations instead of transitions, here's an example */
+
+/* Fade-in effect with animation */
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeInAnimation {
+    animation: fadeInAnimation 1s forwards; /* Animation for fading in */
+}
+
+/* Fade-out effect with animation */
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fadeOutAnimation {
+    animation: fadeOutAnimation 1s forwards; /* Animation for fading out */
+}
+
+  
