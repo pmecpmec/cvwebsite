@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedro Eduardo Cardoso - Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="animated-bg"></div>
+
+  <header class="header">
+    <nav class="nav container">
+      <div class="logo">pmec.dev</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Pedro Eduardo Cardoso</h1>
+          <p class="subtitle">Software Developer from Portugal, living in the Netherlands</p>
+          <div class="typing-text">
+            <span id="typed-text">Building amazing digital experiences...</span>
+          </div>
+          <p>Passionate about coding, fitness, and competitive gaming. Currently studying Software Development at Windesheim Almere.</p>
+          <div style="margin-top: 40px;">
+            <a href="#contact" class="btn">Get In Touch</a>
+            <a href="#about" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="image/background.jpg" alt="Pedro Eduardo Cardoso" class="profile-pic">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title fade-in">About Me</h2>
+      <div class="glass-card fade-in">
+        <p style="font-size: 1.1rem; text-align: center; margin-bottom: 40px;">
+          I'm a 23-year-old software developer with a passion for creating innovative digital solutions. 
+          Born in Portugal and now living in the Netherlands, I bring a unique international perspective to my work.
+          My journey combines technical expertise with dedication to personal growth through fitness and competitive gaming.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="flip-card fade-in">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">💻</div>
+              <h3>Developer</h3>
+              <p>Passionate about code</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Software Development</h3>
+              <p>Currently studying at Windesheim Almere, focusing on modern web technologies and software engineering principles. I love building applications that solve real-world problems.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-in">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">🏋️</div>
+              <h3>Fitness</h3>
+              <p>Strength & discipline</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Fitness Enthusiast</h3>
+              <p>I hit the gym 4 times a week, focusing on different muscle groups each day. Fitness teaches me discipline, consistency, and the importance of pushing personal limits.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-in">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">🎮</div>
+              <h3>Gamer</h3>
+              <p>Competitive spirit</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Competitive Gaming</h3>
+              <p>Former top 150 Counter-Strike player in the Netherlands. Gaming taught me teamwork, quick decision-making, and the importance of continuous improvement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2 class="section-title fade-in">Skills & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-item fade-in">
+          <div class="skill-name">HTML/CSS</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill-item fade-in">
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill-item fade-in">
+          <div class="skill-name">React</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 50%;"></div>
+          </div>
+        </div>
+        <div class="skill-item fade-in">
+          <div class="skill-name">Node.js</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width:40%;"></div>
+          </div>
+        </div>
+        <div class="skill-item fade-in">
+          <div class="skill-name">Python</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 40%;"></div>
+          </div>
+        </div>
+        <div class="skill-item fade-in">
+          <div class="skill-name">Git/GitHub</div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title fade-in">Get In Touch</h2>
+      <div class="contact-form fade-in">
+        <form action="https://formspree.io/f/xrblqbjr" method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <!-- HONEYPOT - hidden from real users but catches bots -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <!-- REDIRECT after successful submission -->
+  <input type="hidden" name="_redirect" value="https://pmec.dev/thankyou.html">
+
+  <div style="text-align: center;">
+    <button type="submit" class="btn">Send Message</button>
+  </div>
+</form>
+
+        <div class="social-links">
+          <a href="https://github.com/pmecpmec" target="_blank" title="GitHub">📧</a>
+          <a href="https://www.linkedin.com/in/pedro-eduardo-cardoso-b42042177/" target="_blank" title="LinkedIn">💼</a>
+          <a href="https://steamcommunity.com/id/pmec" target="_blank" title="Steam">🎮</a>
+          <a href="https://x.com/PedroPmec" target="_blank" title="Twitter">🐦</a>
+          <a href="https://www.youtube.com/@pmecc" target="_blank" title="YouTube">📺</a>
+          <a href="https://www.twitch.tv/pmec" target="_blank" title="Twitch">🎬</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
