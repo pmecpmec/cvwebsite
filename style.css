@@ -1,640 +1,462 @@
-/* General Reset and Variables */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    text-decoration: none;
-    scroll-behavior: smooth;
-}
-
 :root {
-    --bg-color: #2a2a2a;           /* Background base color */
-    --second-bg-color: rgba(32, 32, 32, 0.9); /* Slight transparency for layered effect */
-    --text-color: #f1f1f1;         /* Light text for readability */
-    --second-color: #d1d1d1;       /* Soft grey for secondary text */
-    --main-color: #5D3FD3;         /* Accent color derived from pattern */
-    --highlight-color: #9b406e;    /* Additional highlight color */
+    --primary-color: #7c3aed;
+    --secondary-color: #c084fc;
+    --accent-color: #f59e0b;
+    --bg-primary: #0f0f23;
+    --bg-secondary: #1a1a2e;
+    --bg-glass: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --border-color: rgba(255, 255, 255, 0.2);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-image: url("image/nami.png"); /* Your pattern */
-    background-position: center center; /* Centers the image */
-    background-size: 20px 20px; /* Adjust the size of each pattern square */
-    background-repeat: repeat; /* Makes the background repeat */
-    background-color: var(--bg-color); /* Fallback background color */
-    color: var(--text-color);
-    font-family: 'League Spartan', sans-serif;
-    overflow: hidden; /* Prevent scrolling during loading */
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-
-
-/* Loading Screen */
-.loading-screen {
+/* Background Animation */
+.animated-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s ease;
-    z-index: 9999; /* Ensure it's above other content */
+    z-index: -1;
+    opacity: 0.8;
 }
 
-/* Three-Dot Loader */
-.three-body {
-    --uib-size: 35px;
-    --uib-speed: 0.8s;
-    --uib-color: #5D3FD3;
-    position: relative;
-    display: inline-block;
-    height: var(--uib-size);
-    width: var(--uib-size);
-    animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
-}
-
-.three-body__dot {
+.particle {
     position: absolute;
-    height: 100%;
-    width: 30%;
-}
-
-.three-body__dot:after {
-    content: '';
-    position: absolute;
-    height: 0%;
-    width: 100%;
-    padding-bottom: 100%;
-    background-color: var(--uib-color);
+    width: 4px;
+    height: 4px;
+    background: var(--primary-color);
     border-radius: 50%;
+    animation: float 20s infinite linear;
 }
 
-.three-body__dot:nth-child(1) {
-    bottom: 5%;
-    left: 0;
-    transform: rotate(60deg);
-    transform-origin: 50% 85%;
-}
-
-.three-body__dot:nth-child(1)::after {
-    bottom: 0;
-    left: 0;
-    animation: wobble1 var(--uib-speed) infinite ease-in-out;
-    animation-delay: calc(var(--uib-speed) * -0.3);
-}
-
-.three-body__dot:nth-child(2) {
-    bottom: 5%;
-    right: 0;
-    transform: rotate(-60deg);
-    transform-origin: 50% 85%;
-}
-
-.three-body__dot:nth-child(2)::after {
-    bottom: 0;
-    left: 0;
-    animation: wobble1 var(--uib-speed) infinite
-        calc(var(--uib-speed) * -0.15) ease-in-out;
-}
-
-.three-body__dot:nth-child(3) {
-    bottom: -5%;
-    left: 0;
-    transform: translateX(116.666%);
-}
-
-.three-body__dot:nth-child(3)::after {
-    top: 0;
-    left: 0;
-    animation: wobble2 var(--uib-speed) infinite ease-in-out;
-}
-
-@keyframes spin78236 {
+@keyframes float {
     0% {
-        transform: rotate(0deg);
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
     }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes wobble1 {
-    0%,
-    100% {
-        transform: translateY(0%) scale(1);
+    10% {
         opacity: 1;
     }
-    50% {
-        transform: translateY(-66%) scale(0.65);
-        opacity: 0.8;
-    }
-}
-
-@keyframes wobble2 {
-    0%,
-    100% {
-        transform: translateY(0%) scale(1);
+    90% {
         opacity: 1;
     }
-    50% {
-        transform: translateY(66%) scale(0.65);
-        opacity: 0.8;
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
     }
 }
-
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Quicksand:wght@400&display=swap');
-
 
 /* Header */
-header {
+.header {
     position: fixed;
-    width: 100%;
     top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 15, 35, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav {
     display: flex;
     justify-content: space-between;
-    padding: 20px 10%; /* Adjusted for tighter layout */
     align-items: center;
-    background: transparent;
-    border-bottom: 1px solid var(--second-bg-color);
-    z-index: 1000; /* Ensures it's on top of other sections */
 }
 
-/* Logo Styling */
 .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.logo-big {
-    font-family: 'League Spartan', sans-serif;
-    font-size: 2.5em; /* Adjust font size */
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #ffffff; /* Adjust color for better contrast */
-    letter-spacing: 0.1px;
+    color: var(--primary-color);
 }
 
-.logo-small {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.8rem; /* Adjust font size */
-    color: #ffffff; /* Adjust color for better contrast */
-    letter-spacing: 0.1em;
-    margin-top: -11px; /* Adjust spacing between lines */
-    margin-left: 18px;
-    font-weight: bold;
-}
-
-/* Navigation Styling */
-.navlist {
+.nav-links {
+    display: flex;
     list-style: none;
-    display: flex;
-    margin: 0;
-}
-
-.navlist a {
-    color: var(--second-color);
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 20px;
-    text-decoration: none;
-    transition: color 0.45s ease;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.navlist a:hover,
-.navlist a:active {
-    color: var(--main-color);
-}
-
-/* Menu Icon for Mobile */
-#menu-icon {
-    font-size: 35px;
-    color: var(--text-color);
-    cursor: pointer;
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .navlist {
-        display: none;
-    }
-    #menu-icon {
-        display: block;
-    }
-}
-
-
-
-
-.home {
-    position: relative;
-    height: 100vh; /* Full viewport height */
-    width: 100%;
-    background-image: url("image/nami.png"); /* Your pattern */
-    background-position: center center; /* Keeps the image centered */
-    background-size: 20px 20px; /* Adjust the size of each pattern square */
-    background-repeat: repeat; /* Makes the background repeat */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Keeps text aligned to the left */
-    padding: 0 15%; /* Adjust as needed */
-    animation: fadeInSlideUp 1s ease forwards;
-}
-
-
-.home-text {
-    max-width: 600px;
-    color: var(--text-color);
-    opacity: 0;
-    margin-right: auto; /* Pushes it to the left */
-    animation: fadeInSlideUp 1s ease forwards;
-    animation-delay: 0.6s;
-}
-
-.one, #developer {
-    background: var(--main-color);
-    color: var(--text-color);
-    padding: 0 15px;
-    line-height: 32px;
-    font-size: 20px;
-    border-radius: 5px;
-}
-
-/* About Me Section */
-/* About Me Section */
-.aboutme {
-    display: flex;
     gap: 30px;
-    align-items: center;
-    padding: 100px 15%;
-    background: var(--second-bg-color);
-    border-radius: 10px;
-    margin: 40px 0;
-    opacity: 0;
-    animation: fadeInSlideUp 1s ease forwards;
-    animation-delay: 0.8s;
 }
 
-/* Card Style */
-.card {
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
     position: relative;
-    width: 300px;
-    height: 200px;
-    background: linear-gradient(-45deg, var(--main-color) 0%, var(--highlight-color) 100%);
-    border-radius: 10px;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    padding: 120px 0 80px;
+    position: relative;
 }
 
-.card svg {
-    width: 48px;
-    fill: var(--bg-color);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
 }
 
-.card:hover {
-    transform: rotate(-5deg) scale(1.1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.card__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: var(--second-bg-color);
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.card:hover .card__content {
-    transform: translate(-50%, -50%) rotate(0deg);
-    opacity: 1;
-}
-
-.card__title {
-    margin: 0;
-    font-size: 24px;
-    color: var(--text-color);
+.hero-text h1 {
+    font-size: 3.5rem;
     font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.card__description {
-    margin: 10px 0 0;
-    font-size: 14px;
-    color: var(--second-color);
-    line-height: 1.4;
+.hero-text .subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
 }
 
-.card:hover svg {
-    scale: 0;
-    transform: rotate(-45deg);
+.typing-text {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 30px;
 }
 
+.hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+    animation: profileGlow 3s ease-in-out infinite;
+}
 
-/* Buttons */
+@keyframes profileGlow {
+    0%, 100% {
+        box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 60px rgba(124, 58, 237, 0.8);
+    }
+}
+
+.glass-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
 .btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background-color: var(--main-color);
-    color: var(--text-color);
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-weight: 500;
-    font-size: 16px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 20px;
 }
 
 .btn:hover {
-    background-color: #9b406e;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
 }
 
-/* Keyframes */
-@keyframes fadeInSlideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    header {
-        padding: 20px 10%;
-    }
-    .aboutme {
-        flex-direction: column;
-        padding: 50px 10%;
-    }
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
-@media (max-width: 576px) {
-    .home-text h1 {
-        font-size: 3rem;
-    }
-    .home-text h3 {
-        font-size: 1.5rem;
-    }
+/* About Section */
+.about {
+    padding: 100px 0;
+    background: var(--bg-secondary);
 }
 
-.logo-img {
-    height: 60px; /* Adjust based on logo dimensions */
-    width: auto;
-    margin-right: 10px;
-    transition: transform 0.3s;
-}
-
-.logo:hover .logo-img {
-    transform: scale(1.05); /* Slight hover effect */
-}
-
-body.loading {
-    overflow: hidden; /* Disable scrolling */
-}
-
-/* Experience Section */
-.experience {
-    padding: 100px 15%;
-    background: var(--second-bg-color);
-    border-radius: 10px;
-    margin: 40px 0;
-    opacity: 0;
-    animation: fadeInSlideUp 1s ease forwards;
-    animation-delay: 1.8s; /* Adjust delay as needed */
-}
-
-.experience h2 {
-    font-size: 2rem;
-    color: var(--main-color);
-    margin-bottom: 10px;
-}
-
-.experience p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--second-color);
-}
-
-/* Portfolio Section */
-.portfolio {
-    padding: 100px 15%;
-    background: var(--bg-color);
-    border-radius: 10px;
-    margin: 40px 0;
-    opacity: 0;
-    animation: fadeInSlideUp 1s ease forwards;
-    animation-delay: 2s;
-}
-
-.portfolio h2 {
-    font-size: 2rem;
-    color: var(--main-color);
-    margin-bottom: 10px;
-}
-
-.portfolio p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--second-color);
-}
-
-/* Contact Me Section */
-.contactme {
-    padding: 100px 15%;
-    background: var(--second-bg-color);
-    border-radius: 10px;
-    margin: 40px 0;
-    opacity: 0;
-    animation: fadeInSlideUp 1s ease forwards;
-    animation-delay: 2.2s; /* Adjust delay as needed */
+.section-title {
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow to make it pop */
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: var(--primary-color);
 }
 
-.contactme h2 {
-    font-size: 2rem;
-    color: var(--main-color);
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 250px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.flip-card-front {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.flip-card-back {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    transform: rotateY(180deg);
+}
+
+.flip-card-front h3 {
+    font-size: 1.5rem;
     margin-bottom: 10px;
-    font-weight: 600; /* Slightly bolder title */
+    color: white;
 }
 
-.contactme p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--second-color);
+.flip-card-front .icon {
+    font-size: 3rem;
     margin-bottom: 20px;
 }
 
-/* Contact Form */
-.contactme form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px; /* Ensure padding for spacing */
-    background-color: var(--bg-color);
+/* Skills Section */
+.skills {
+    padding: 100px 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.skill-item {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+.skill-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.skill-bar {
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    height: 10px;
+    overflow: hidden;
 }
 
-/* Form Fields */
-.contactme input[type="text"],
-.contactme input[type="email"],
-.contactme textarea {
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid var(--main-color);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: border-color 0.3s; /* Smooth border color change */
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    transition: width 2s ease;
 }
 
-.contactme input[type="text"]:focus,
-.contactme input[type="email"]:focus,
-.contactme textarea:focus {
-    border-color: var(--main-color); /* Focus effect */
-    outline: none;
+/* Contact Section */
+.contact {
+    padding: 100px 0;
+    background: var(--bg-secondary);
 }
 
-.contactme textarea {
-    resize: vertical;
-    min-height: 100px;
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Submit Button */
-.contactme input[type="submit"] {
-    padding: 12px 30px;
-    background-color: var(--main-color);
-    color: var(--text-color);
-    border: none;
-    border-radius: 5px;
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
     font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover */
 }
 
-.contactme input[type="submit"]:hover {
-    background-color: #9b406e;
-    transform: translateY(-2px); /* Slight hover lift effect */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-.contactme input[type="submit"]:active {
-    transform: translateY(1px); /* Subtle press effect */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-/* Social Links */
-.contactme .social-links {
-    margin-top: 20px;
+.social-links {
     display: flex;
-    gap: 15px;
     justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
 }
 
-.contactme .social-links a {
-    color: var(--main-color);
-    font-size: 1.5rem;
-    transition: color 0.3s, transform 0.3s; /* Smooth hover transition */
+.social-links a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-glass);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
-.contactme .social-links a:hover {
-    color: var(--text-color);
-    transform: scale(1.1); /* Slight zoom effect on hover */
+.social-links a:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
 }
 
-/* Responsive Design for Smaller Screens */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .contactme form {
-        padding: 20px 15px; /* Adjust padding */
+    .nav-links {
+        display: none;
     }
     
-    .contactme input[type="submit"] {
-        width: 100%; /* Make the submit button full width on smaller screens */
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .profile-pic {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
     }
 }
 
-@media (max-width: 576px) {
-    .contactme h2 {
-        font-size: 1.75rem; /* Adjust title size for mobile */
-    }
-
-    .contactme p {
-        font-size: 1rem; /* Adjust text size for mobile */
-    }
-
-    .contactme input[type="submit"] {
-        padding: 12px 20px; /* Adjust button size */
-    }
-
-    .contactme .social-links a {
-        font-size: 1.2rem; /* Make social links slightly smaller */
-    }
+/* Scroll animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-
-/* Fade-in and fade-out transitions */
-.fade-section {
-    opacity: 0; /* Initially hidden */
-    transition: opacity 1s ease-in-out; /* Smooth opacity transition */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
-
-/* When the section is in view (triggered by JavaScript) */
-.fadeIn {
-    opacity: 1; /* Fade in */
-}
-
-/* When the section leaves the viewport (triggered by JavaScript) */
-.fadeOut {
-    opacity: 0; /* Fade out */
-}
-
-/* Optional: If you want to add animations instead of transitions, here's an example */
-
-/* Fade-in effect with animation */
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.fadeInAnimation {
-    animation: fadeInAnimation 1s forwards; /* Animation for fading in */
-}
-
-/* Fade-out effect with animation */
-@keyframes fadeOutAnimation {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-.fadeOutAnimation {
-    animation: fadeOutAnimation 1s forwards; /* Animation for fading out */
-}
-
-  

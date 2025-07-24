@@ -1,60 +1,95 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const loadingScreen = document.getElementById("loading-screen");
-  const body = document.body;
+// Animated background particles
+function createParticles() {
+  const bg = document.querySelector(".animated-bg");
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.animationDelay = Math.random() * 20 + "s";
+    particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+    bg.appendChild(particle);
+  }
+}
 
-  // Disable scrolling while loading
-  body.classList.add("loading");
+// Typing animation
+function typeWriter() {
+  const texts = [
+    "Building amazing digital experiences...",
+    "Lifting some heavy weights...",
+    "Chilling with friends...",
+    "Always learning new ways to make life easier...",
+  ];
+  let textIndex = 0;
+  let charIndex = 0;
+  let currentText = "";
+  let isDeleting = false;
 
-  // Hide loading screen after 2 seconds
-  setTimeout(() => {
-    loadingScreen.style.opacity = "0"; // Fade out
+  function type() {
+    const fullText = texts[textIndex];
 
-    // Fully hide the loading screen after fade-out transition
-    setTimeout(() => {
-      loadingScreen.style.display = "none";
-      body.classList.remove("loading"); // Re-enable scrolling
-      body.style.overflow = "auto"; // Ensure scroll is enabled
+    if (isDeleting) {
+      currentText = fullText.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      currentText = fullText.substring(0, charIndex + 1);
+      charIndex++;
+    }
 
-      // Scroll to top after loading screen disappears
-      window.scrollTo(0, 0);
-    }, 500); // Matches CSS transition duration
-  }, 2000);
+    document.getElementById("typed-text").textContent = currentText;
 
-  // Implementing fade-in and fade-out on scroll
-  const options = {
-    root: null, // Use the viewport as the root
-    rootMargin: "0px 0px -50px 0px", // Trigger fade-out when the section is 50px away from leaving the viewport
-    threshold: 1.0, // Ensure the section is fully in or out of the viewport
-  };
+    let typeSpeed = isDeleting ? 50 : 100;
 
-  // Manually trigger the fade-out effect for testing
-  setTimeout(() => {
-    const fadeSection = document.querySelector("#aboutme"); // Or any section you want to test
-    fadeSection.classList.remove("fadeIn");
-    fadeSection.classList.add("fadeOut");
-  }, 5000); // After 5 seconds, fade out
+    if (!isDeleting && charIndex === fullText.length) {
+      typeSpeed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      typeSpeed = 500;
+    }
 
-  const observerCallback = (entries) => {
-    entries.forEach((entry) => {
-      const target = entry.target;
+    setTimeout(type, typeSpeed);
+  }
 
-      if (entry.isIntersecting) {
-        console.log(`Fading in: ${target.id}`); // Log the fade-in action
-        target.classList.add("fadeIn");
-        target.classList.remove("fadeOut");
-      } else {
-        console.log(`Fading out: ${target.id}`); // Log the fade-out action
-        target.classList.remove("fadeIn");
-        target.classList.add("fadeOut");
+  type();
+}
+
+// Scroll animations
+function handleScrollAnimations() {
+  const elements = document.querySelectorAll(".fade-in");
+
+  elements.forEach((element) => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementVisible = 150;
+
+    if (elementTop < window.innerHeight - elementVisible) {
+      element.classList.add("visible");
+    }
+  });
+}
+
+// Smooth scrolling for navigation links
+function smoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
     });
-  };
-
-  const observer = new IntersectionObserver(observerCallback, options);
-
-  // Select specific sections for fade effect (for better performance)
-  const fadeSections = document.querySelectorAll(".fade-section");
-  fadeSections.forEach((section) => {
-    observer.observe(section);
   });
+}
+
+// Initialize everything
+document.addEventListener("DOMContentLoaded", function () {
+  createParticles();
+  typeWriter();
+  smoothScroll();
+  handleScrollAnimations();
+
+  window.addEventListener("scroll", handleScrollAnimations);
 });
