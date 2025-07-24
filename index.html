@@ -106,13 +106,13 @@
       <h2 class="section-title fade-in">Skills & Technologies</h2>
       <div class="skills-grid">
         <div class="skill-item fade-in">
-          <div class="skill-name">JavaScript</div>
+          <div class="skill-name">HTML/CSS</div>
           <div class="skill-bar">
-            <div class="skill-progress" style="width: 85%;"></div>
+            <div class="skill-progress" style="width: 90%;"></div>
           </div>
         </div>
         <div class="skill-item fade-in">
-          <div class="skill-name">HTML/CSS</div>
+          <div class="skill-name">JavaScript</div>
           <div class="skill-bar">
             <div class="skill-progress" style="width: 90%;"></div>
           </div>
@@ -120,19 +120,19 @@
         <div class="skill-item fade-in">
           <div class="skill-name">React</div>
           <div class="skill-bar">
-            <div class="skill-progress" style="width: 80%;"></div>
+            <div class="skill-progress" style="width: 50%;"></div>
           </div>
         </div>
         <div class="skill-item fade-in">
           <div class="skill-name">Node.js</div>
           <div class="skill-bar">
-            <div class="skill-progress" style="width: 75%;"></div>
+            <div class="skill-progress" style="width:40%;"></div>
           </div>
         </div>
         <div class="skill-item fade-in">
           <div class="skill-name">Python</div>
           <div class="skill-bar">
-            <div class="skill-progress" style="width: 70%;"></div>
+            <div class="skill-progress" style="width: 40%;"></div>
           </div>
         </div>
         <div class="skill-item fade-in">
@@ -149,23 +149,30 @@
     <div class="container">
       <h2 class="section-title fade-in">Get In Touch</h2>
       <div class="contact-form fade-in">
-        <form>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <div style="text-align: center;">
-            <button type="submit" class="btn">Send Message</button>
-          </div>
-        </form>
+        <form action="https://formspree.io/f/xrblqbjr" method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <!-- HONEYPOT - hidden from real users but catches bots -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <!-- REDIRECT after successful submission -->
+  <input type="hidden" name="_redirect" value="https://pmec.dev/thankyou.html">
+
+  <div style="text-align: center;">
+    <button type="submit" class="btn">Send Message</button>
+  </div>
+</form>
 
         <div class="social-links">
           <a href="https://github.com/pmecpmec" target="_blank" title="GitHub">📧</a>
