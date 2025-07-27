@@ -468,3 +468,53 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+.social-links a {
+  position: relative;
+  display: flex;             /* use flex to center content */
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  width: 50px;
+  height: 50px;
+  background: var(--bg-glass);
+  border-radius: 50%;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.5rem;          /* smaller emoji size */
+  margin: 0 10px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+
+.social-links a:hover {
+  transform: translateY(5px);
+}
+
+/* Tooltip container - hidden by default */
+.social-links a::after {
+  content: attr(title); /* use the title attribute for tooltip text */
+  position: absolute;
+  bottom: 100%; /* place tooltip above the icon */
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+/* Show tooltip on hover */
+.social-links a:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-20px);
+  pointer-events: auto;
+}
+
