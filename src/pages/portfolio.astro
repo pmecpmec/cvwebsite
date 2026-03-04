@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectGrid from '../components/ProjectGrid.svelte';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((p) => ({ slug: p.slug, ...p.data }));
+
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Portfolio - Pedro Eduardo Cardoso',
+  description: 'Software development projects and case studies by Pedro Eduardo Cardoso.',
+  url: 'https://pmec.dev/portfolio',
+  mainEntity: projects.map((p) => ({
+    '@type': 'CreativeWork',
+    name: p.title,
+    description: p.description,
+    url: p.link,
+    author: {
+      '@type': 'Person',
+      name: 'Pedro Eduardo Cardoso',
+    },
+    keywords: p.tags.join(', '),
+  })),
+};
+---
+
+<MainLayout
+  title="Portfolio - Pedro Eduardo Cardoso"
+  description="Explore my software development projects including web applications, full-stack platforms, and more."
+>
+  <section class="pt-[73px]">
+    <!-- Portfolio Hero -->
+    <div
+      class="relative py-20 lg:py-28 bg-[var(--bg-secondary)] transition-colors duration-300
+             overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 opacity-30"
+        aria-hidden="true"
+      >
+        <div
+          class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full
+                 bg-primary/20 blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full
+                 bg-secondary/20 blur-3xl"
+        >
+        </div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-5 text-center">
+        <p
+          class="text-sm font-semibold tracking-widest uppercase text-primary mb-4 reveal"
+        >
+          Portfolio
+        </p>
+        <h1
+          class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 reveal stagger-1"
+        >
+          <span class="text-gradient">My Projects</span>
+        </h1>
+        <p
+          class="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto reveal stagger-2"
+        >
+          A collection of projects I've designed and developed. Each project
+          represents a unique challenge and a learning opportunity.
+        </p>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="section-padding">
+      <div class="max-w-7xl mx-auto px-5">
+        <ProjectGrid projects={projects} showFilters={true} client:visible />
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
+</MainLayout>

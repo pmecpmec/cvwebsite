@@ -1,0 +1,27 @@
+---
+title: "Statsmec"
+description: "Real-time gaming statistics dashboard pulling data from Steam and FACEIT APIs with match history analysis."
+longDescription: "A gaming statistics dashboard that aggregates data from Steam and FACEIT APIs to provide detailed Counter-Strike performance analytics. Features include match history with round-by-round breakdowns, weapon accuracy heatmaps, performance trends over time, and comparative statistics against average players at your rank. Built with Python/FastAPI on the backend and React on the frontend, with PostgreSQL for persistent data storage and Redis for API response caching."
+tags: ["Python", "FastAPI", "React", "PostgreSQL", "Redis", "Steam API"]
+type: "Full Stack"
+link: "https://statsmec.pmec.dev"
+github: "https://github.com/pmecpmec/statsmec"
+featured: true
+order: 3
+---
+
+## Overview
+
+As a former top 150 Counter-Strike player in the Netherlands, I built this tool to analyze my gameplay patterns and identify areas for improvement. The dashboard pulls real-time data from multiple gaming APIs and presents actionable insights.
+
+## Key Features
+
+- **Live Stats**: Real-time ELO, win rate, and K/D ratio tracking
+- **Match History**: Detailed match breakdowns with scoreboard data
+- **Performance Trends**: Visualize improvement or decline over customizable time periods
+- **Map Analysis**: Win rates and performance metrics per map
+- **Comparison Tool**: Compare your stats against players at similar or different ranks
+
+## Technical Details
+
+The FastAPI backend handles API aggregation and data normalization from Steam and FACEIT. PostgreSQL stores historical match data for trend analysis, while Redis provides a caching layer to stay within API rate limits. The React frontend features responsive charts and real-time data updates.
