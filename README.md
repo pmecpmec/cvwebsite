@@ -57,7 +57,7 @@ The site is deployed to **GitHub Pages** via GitHub Actions on every push to `ma
 2. Contents of `dist/` are published to the `gh-pages` branch.
 3. Custom domain `pmec.dev` is set via the workflow and `public/CNAME`.
 
-Ensure **GitHub Pages** is enabled for this repo (Settings → Pages → Source: GitHub Actions).
+**Important:** In the repo **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch"). Otherwise GitHub will try to build the repo with Jekyll and fail on the Astro files.
 
 ## License
 
