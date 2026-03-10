@@ -35,6 +35,7 @@ export const skills: SkillCategory[] = [
     items: [
       { name: 'Node.js' },
       { name: 'PostgreSQL' },
+      { name: 'MongoDB' },
       { name: 'Supabase' },
       { name: 'REST APIs' },
       { name: 'Prisma' },

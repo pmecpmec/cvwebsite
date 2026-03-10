@@ -11,9 +11,9 @@ export default function Skills() {
     <section id="skills" className="py-32">
       <div className="section-container">
         <SectionHeading
-          label="03 / Skills"
+          label="04 / Skills"
           title="Tech I work with"
-          description="The tools and technologies I use to bring ideas to life."
+          description="Languages, frameworks, and tools I use daily."
         />
 
         <motion.div
@@ -27,18 +27,19 @@ export default function Skills() {
             <motion.div
               key={category.label}
               variants={fadeUp}
-              className="glass p-6 hover:border-white/10 transition-colors group"
+              whileHover={{ y: -4, transition: { duration: 0.3 } }}
+              className="card p-6 group"
             >
-              <h3 className="font-mono text-xs uppercase tracking-wider text-accent mb-5">
+              <h3 className="font-mono text-[11px] uppercase tracking-widest text-accent mb-5">
                 {category.label}
               </h3>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {category.items.map((skill) => (
                   <li
                     key={skill.name}
-                    className="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors flex items-center gap-2"
+                    className="text-sm text-warm-600 group-hover:text-warm-700 transition-colors flex items-center gap-2.5"
                   >
-                    <span className="w-1 h-1 rounded-full bg-accent/50" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent/40 group-hover:bg-accent transition-colors" />
                     {skill.name}
                   </li>
                 ))}

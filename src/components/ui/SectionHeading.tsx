@@ -16,25 +16,25 @@ export default function SectionHeading({ label, title, description }: Props) {
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={stagger(0.1)}
+      variants={stagger(0.12)}
       className="mb-16"
     >
       <motion.span
         variants={fadeUp}
-        className="font-mono text-sm text-accent tracking-wider uppercase"
+        className="font-mono text-xs text-accent tracking-widest uppercase"
       >
         {label}
       </motion.span>
       <motion.h2
         variants={fadeUp}
-        className="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight"
+        className="mt-4 font-serif text-4xl sm:text-5xl text-warm-900 tracking-tight italic"
       >
         {title}
       </motion.h2>
       {description && (
         <motion.p
           variants={fadeUp}
-          className="mt-4 text-zinc-400 max-w-xl text-lg leading-relaxed"
+          className="mt-4 text-warm-600 max-w-lg text-lg leading-relaxed"
         >
           {description}
         </motion.p>

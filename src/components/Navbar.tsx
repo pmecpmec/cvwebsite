@@ -23,19 +23,19 @@ export default function Navbar() {
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.5, delay: 0.05 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-surface/80 backdrop-blur-xl border-b border-white/[0.06]'
+            ? 'bg-cream-100/80 backdrop-blur-xl border-b border-warm-900/[0.06] shadow-[0_1px_8px_rgba(44,36,24,0.04)]'
             : 'bg-transparent'
         }`}
       >
         <nav className="section-container flex items-center justify-between h-16">
           <a
             href="#"
-            className="font-mono font-semibold text-white text-lg tracking-tight hover:text-accent-light transition-colors"
+            className="font-serif text-xl text-warm-900 hover:text-accent transition-colors italic"
           >
-            pmec<span className="text-accent">.</span>dev
+            pedro<span className="text-accent">.</span>
           </a>
 
           <ul className="hidden md:flex items-center gap-8">
@@ -43,7 +43,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-zinc-400 hover:text-white transition-colors link-underline"
+                  className="text-sm text-warm-600 hover:text-warm-900 transition-colors link-underline"
                 >
                   {link.label}
                 </a>
@@ -53,7 +53,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-zinc-400 hover:text-white transition-colors"
+            className="md:hidden text-warm-700 hover:text-warm-900 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -67,10 +67,10 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-surface/95 backdrop-blur-xl flex flex-col items-center justify-center"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-cream-100/98 backdrop-blur-xl flex flex-col items-center justify-center"
           >
-            <nav className="flex flex-col items-center gap-8">
+            <nav className="flex flex-col items-center gap-10">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
@@ -78,8 +78,8 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="text-2xl font-medium text-white hover:text-accent-light transition-colors"
+                  transition={{ delay: i * 0.06 }}
+                  className="font-serif text-3xl text-warm-900 hover:text-accent transition-colors italic"
                 >
                   {link.label}
                 </motion.a>
