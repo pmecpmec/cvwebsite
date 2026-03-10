@@ -49,7 +49,17 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-accent-dark via-accent to-accent-light bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #A85E2D 0%, #C4723A 25%, #E8956A 50%, #D98B55 75%, #C4723A 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
   }
 
   .card {

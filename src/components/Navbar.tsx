@@ -38,18 +38,27 @@ export default function Navbar() {
             pedro<span className="text-accent">.</span>
           </a>
 
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-sm text-warm-600 hover:text-warm-900 transition-colors link-underline"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex items-center gap-8">
+            <ul className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-warm-600 hover:text-warm-900 transition-colors link-underline"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+              className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-warm-500 border border-warm-900/10 rounded-lg hover:border-warm-900/20 hover:text-warm-700 transition-all"
+              aria-label="Open command palette"
+            >
+              <kbd>⌘K</kbd>
+            </button>
+          </div>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}

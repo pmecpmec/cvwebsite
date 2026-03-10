@@ -7,4 +7,14 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          particles: ['@tsparticles/react', '@tsparticles/slim', '@tsparticles/engine'],
+          'framer-motion': ['framer-motion'],
+        },
+      },
+    },
+  },
 });

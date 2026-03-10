@@ -16,22 +16,22 @@ export default function About() {
   return (
     <section id="about" className="py-32">
       <div className="section-container">
-        <SectionHeading label="01 / About" title="A bit about me" />
+        <SectionHeading label="01 / About" title="A bit about me" center />
 
         <motion.div
           ref={ref}
           initial="hidden"
           animate={controls}
           variants={stagger(0.12)}
-          className="grid md:grid-cols-5 gap-12 items-start"
         >
-          <motion.div ref={imgRef} variants={fadeUp} className="md:col-span-2 relative group">
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+          {/* Photo - wider */}
+          <motion.div ref={imgRef} variants={fadeUp} className="relative group max-w-3xl mx-auto mb-14">
+            <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
               <motion.img
                 style={{ y: imgY }}
                 src="/image/background.jpg"
                 alt="Pedro Eduardo Cardoso"
-                className="w-full h-[120%] object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                className="w-full h-[130%] object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-cream-100/40 via-transparent to-transparent" />
@@ -39,26 +39,30 @@ export default function About() {
             <div className="absolute -bottom-3 -right-3 w-full h-full border border-accent/15 rounded-2xl -z-10" />
           </motion.div>
 
-          <motion.div variants={stagger(0.1)} className="md:col-span-3 space-y-5">
+          {/* Text underneath */}
+          <motion.div variants={stagger(0.1)} className="max-w-2xl mx-auto space-y-5">
             <motion.p variants={fadeUp} className="text-warm-800 text-lg leading-relaxed">
-              I'm Pedro, 23, studying Software Development at Windesheim Almere.
+              I'm Pedro, 24, studying Software Development at Windesheim Almere.
               I'm the kind of person who doesn't give up when something doesn't
-              work — I'll keep going until I figure it out. I'm really into{' '}
-              <span className="text-warm-900 font-medium">front-end development</span>{' '}
+              work. I'll keep going until I figure it out. I'm really into{' '}
+              <span className="relative inline-block text-warm-900 font-medium cursor-default group/fe">
+                <span className="relative z-10 group-hover/fe:text-accent transition-colors duration-300">front-end development</span>
+                <span className="absolute bottom-0 left-0 w-full h-[3px] bg-accent/20 rounded-full group-hover/fe:h-full group-hover/fe:bg-accent/[0.08] transition-all duration-300" />
+              </span>{' '}
               because I like seeing what I build come to life.
             </motion.p>
 
             <motion.p variants={fadeUp} className="text-warm-600 leading-relaxed">
               I enjoy experimenting with frameworks like React and Tailwind,
               writing clean code, and building interfaces that actually feel
-              good to use. I'm curious by nature, always looking to improve —
-              not just as a developer, but as a person too.
+              good to use. I'm curious by nature, always looking to improve.
+              Not just as a developer, but as a person too.
             </motion.p>
 
             <motion.p variants={fadeUp} className="text-warm-600 leading-relaxed">
               When I'm not coding, you'll find me at the gym, playing
               Counter-Strike, or exploring new tech. I believe great software
-              is built with intention — every interaction, every line of code
+              is built with intention. Every interaction, every line of code
               should serve a purpose.
             </motion.p>
 

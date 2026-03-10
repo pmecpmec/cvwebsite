@@ -6,9 +6,10 @@ interface Props {
   label: string;
   title: string;
   description?: string;
+  center?: boolean;
 }
 
-export default function SectionHeading({ label, title, description }: Props) {
+export default function SectionHeading({ label, title, description, center = false }: Props) {
   const { ref, controls } = useScrollReveal();
 
   return (
@@ -17,7 +18,7 @@ export default function SectionHeading({ label, title, description }: Props) {
       initial="hidden"
       animate={controls}
       variants={stagger(0.12)}
-      className="mb-16"
+      className={`mb-16 ${center ? 'text-center' : ''}`}
     >
       <motion.span
         variants={fadeUp}
@@ -34,7 +35,7 @@ export default function SectionHeading({ label, title, description }: Props) {
       {description && (
         <motion.p
           variants={fadeUp}
-          className="mt-4 text-warm-600 max-w-lg text-lg leading-relaxed"
+          className={`mt-4 text-warm-600 text-lg leading-relaxed ${center ? 'max-w-lg mx-auto' : 'max-w-lg'}`}
         >
           {description}
         </motion.p>

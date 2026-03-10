@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, lazy, Suspense } from 'react';
+
+const Particles = lazy(() => import('./ui/Particles'));
 
 const word = {
   hidden: { opacity: 0, y: 40, rotateX: 40 },
@@ -16,7 +18,7 @@ const word = {
   }),
 };
 
-function AnimatedWords({ text, className = '' }: { text: string; className?: string }) {
+function AnimatedWords({ text, className = '', gradient = false }: { text: string; className?: string; gradient?: boolean }) {
   return (
     <span className={`block overflow-hidden ${className}`}>
       {text.split(' ').map((w, i) => (
@@ -26,7 +28,7 @@ function AnimatedWords({ text, className = '' }: { text: string; className?: str
           variants={word}
           initial="hidden"
           animate="visible"
-          className="inline-block mr-[0.3em]"
+          className={`inline-block mr-[0.3em] ${gradient ? 'gradient-text' : ''}`}
           style={{ perspective: 400 }}
         >
           {w}
@@ -47,6 +49,13 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Suspense fallback={null}>
+          <Particles />
+        </Suspense>
+      </div>
+
       {/* Warm ambient shapes */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 right-[15%] w-[500px] h-[500px] bg-accent/[0.06] rounded-full blur-[100px]" />
@@ -74,7 +83,7 @@ export default function Hero() {
           <AnimatedWords text="I build things" />
           <AnimatedWords
             text="for the web"
-            className="gradient-text"
+            gradient
           />
         </h1>
 
@@ -101,12 +110,16 @@ export default function Hero() {
             See my work
             <ArrowDown size={16} className="group-hover:translate-y-0.5 transition-transform" />
           </a>
-          <a
-            href="#contact"
+          <button
+            onClick={() => {
+              const contact = document.getElementById('contact');
+              contact?.scrollIntoView({ behavior: 'smooth' });
+              setTimeout(() => window.dispatchEvent(new Event('spark-email')), 800);
+            }}
             className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-warm-700 border border-warm-900/15 rounded-full hover:border-warm-900/30 hover:text-warm-900 transition-all duration-300"
           >
             Let's talk
-          </a>
+          </button>
         </motion.div>
 
         {/* Scroll cue */}

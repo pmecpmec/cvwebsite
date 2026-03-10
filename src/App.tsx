@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,8 +7,13 @@ import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ClickSpark from './components/ui/ClickSpark';
+import TargetCursor from './components/ui/TargetCursor';
+import CommandPalette from './components/ui/CommandPalette';
 
 export default function App() {
+  const appRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLAnchorElement;
@@ -25,17 +30,21 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ClickSpark sparkColor="#C4723A" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+      <div ref={appRef} className="min-h-screen cursor-none [&_*]:!cursor-none">
+        <TargetCursor containerRef={appRef} />
+        <CommandPalette />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Experience />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ClickSpark>
   );
 }
