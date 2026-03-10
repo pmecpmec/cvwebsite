@@ -1,8 +1,10 @@
 # pmec.dev
 
+Personal portfolio — React, TypeScript, Framer Motion, Tailwind CSS.
+
 ```bash
 npm install
 npm run dev
 ```
 
-`npm run build` → `dist/`. Projects: `src/content/projects/*.mdx`. Deploys on push to `main`.
+Build: `npm run build` → deploy `dist/` to GitHub Pages.
