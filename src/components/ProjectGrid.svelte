@@ -134,10 +134,11 @@
       on:click={() => openModal(project)}
       class="group text-left rounded-2xl border border-[var(--border-color)]
              bg-[var(--bg-glass)] backdrop-blur-sm overflow-hidden
-             transition-all duration-500 hover:-translate-y-2
-             hover:shadow-2xl hover:shadow-primary/10
-             hover:border-primary/30 focus-ring
-             {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}"
+              transition-all duration-500 hover:-translate-y-2
+              hover:shadow-2xl hover:shadow-primary/10
+              hover:border-primary/30 focus-ring
+              project-card
+              {visible ? 'card-visible' : ''}"
       style="transition-delay: {visible ? i * 100 : 0}ms"
       aria-label="View project: {project.title}"
     >
@@ -360,5 +361,17 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .project-card {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, 
+                box-shadow 0.5s ease, border-color 0.5s ease, -translate-y-2 0.5s ease;
+  }
+
+  .project-card.card-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
