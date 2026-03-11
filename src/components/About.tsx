@@ -42,28 +42,24 @@ export default function About() {
           {/* Text underneath */}
           <motion.div variants={stagger(0.1)} className="max-w-2xl mx-auto space-y-5">
             <motion.p variants={fadeUp} className="text-warm-800 text-lg leading-relaxed">
-              I'm Pedro, 24, studying Software Development at Windesheim Almere.
-              I'm the kind of person who doesn't give up when something doesn't
-              work. I'll keep going until I figure it out. I'm really into{' '}
+              I'm Pedro, 24, currently living in Amsterdam and studying Software Development at Windesheim in Almere. Originally born in Portugal, my curiosity for technology started early. From playing on a Game Boy as a kid to experimenting with modern development tools today, I've always been fascinated by how technology works and how it can be built.
+            </motion.p>
+
+            <motion.p variants={fadeUp} className="text-warm-800 text-lg leading-relaxed">
+              I'm especially drawn to{' '}
               <span className="relative inline-block text-warm-900 font-medium cursor-default group/fe">
                 <span className="relative z-10 group-hover/fe:text-accent transition-colors duration-300">front-end development</span>
                 <span className="absolute bottom-0 left-0 w-full h-[3px] bg-accent/20 rounded-full group-hover/fe:h-full group-hover/fe:bg-accent/[0.08] transition-all duration-300" />
               </span>{' '}
-              because I like seeing what I build come to life.
+              because I enjoy seeing ideas come to life in the browser. Building interfaces that feel smooth, responsive, and intentional is something I genuinely enjoy.
             </motion.p>
 
             <motion.p variants={fadeUp} className="text-warm-600 leading-relaxed">
-              I enjoy experimenting with frameworks like React and Tailwind,
-              writing clean code, and building interfaces that actually feel
-              good to use. I'm curious by nature, always looking to improve.
-              Not just as a developer, but as a person too.
+              I'm naturally curious and persistent. When something doesn't work, I keep digging until I understand it. That mindset pushes me to continuously improve, both as a developer and as a person.
             </motion.p>
 
             <motion.p variants={fadeUp} className="text-warm-600 leading-relaxed">
-              When I'm not coding, you'll find me at the gym, playing
-              Counter-Strike, or exploring new tech. I believe great software
-              is built with intention. Every interaction, every line of code
-              should serve a purpose.
+              Outside of coding you'll usually find me in the gym, playing competitive games like Counter-Strike, or exploring new technologies and tools.
             </motion.p>
 
             <motion.div

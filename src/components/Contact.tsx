@@ -61,7 +61,7 @@ export default function Contact() {
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-4">
             <a
               id="email-btn"
-              href="mailto:contact@pmec.dev"
+              href="mailto:pmecdev@gmail.com"
               className={`relative group inline-flex items-center gap-2.5 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 ${
                 sparkEmail
                   ? 'bg-accent text-cream-100 shadow-[0_0_24px_rgba(196,114,58,0.35)] scale-105'

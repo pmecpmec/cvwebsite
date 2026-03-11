@@ -8,48 +8,86 @@ export interface SkillCategory {
   items: Skill[];
 }
 
-export const skills: SkillCategory[] = [
+export interface SkillTier {
+  tier: string;
+  categories?: SkillCategory[];
+  items?: Skill[];
+}
+
+export const skillTiers: SkillTier[] = [
   {
-    label: 'Languages',
-    items: [
-      { name: 'TypeScript' },
-      { name: 'JavaScript' },
-      { name: 'Python' },
-      { name: 'Java' },
-      { name: 'C#' },
-      { name: 'SQL' },
+    tier: "CORE STACK",
+    categories: [
+      {
+        label: "Languages",
+        items: [
+          { name: "JavaScript" },
+          { name: "TypeScript" },
+          { name: "Python" },
+          { name: "SQL" },
+        ],
+      },
+      {
+        label: "Frontend",
+        items: [
+          { name: "React" },
+          { name: "Next.js" },
+          { name: "Tailwind CSS" },
+          { name: "HTML/CSS" },
+        ],
+      },
+      {
+        label: "Backend & Data",
+        items: [
+          { name: "Node.js" },
+          { name: "PostgreSQL" },
+          { name: "MongoDB" },
+          { name: "REST APIs" },
+        ],
+      },
+      {
+        label: "Tools",
+        items: [
+          { name: "Git" },
+          { name: "VS Code" },
+          { name: "Visual Studio" },
+          { name: "Notion" },
+          { name: "Figma" },
+          { name: "GitHub Actions" },
+        ],
+      },
     ],
   },
   {
-    label: 'Frontend',
+    tier: "COMFORTABLE WITH",
     items: [
-      { name: 'React' },
-      { name: 'Next.js' },
-      { name: 'Tailwind CSS' },
-      { name: 'Framer Motion' },
-      { name: 'HTML/CSS' },
+      { name: "Vue.js" },
+      { name: "Framer Motion" },
+      { name: "Render" },
+      { name: "Excel" },
+      { name: "GitKraken" },
+      { name: "Linear" },
+      { name: "Docker" },
     ],
   },
   {
-    label: 'Backend & Data',
+    tier: "EXPERIENCE WITH",
     items: [
-      { name: 'Node.js' },
-      { name: 'PostgreSQL' },
-      { name: 'MongoDB' },
-      { name: 'Supabase' },
-      { name: 'REST APIs' },
-      { name: 'Prisma' },
+      { name: "C#" },
+      { name: "Java" },
+      { name: "Supabase" },
+      { name: "Prisma" },
+      { name: "Expo" },
+      { name: "Vercel" },
     ],
   },
-  {
-    label: 'Tools',
-    items: [
-      { name: 'Git' },
-      { name: 'Docker' },
-      { name: 'VS Code' },
-      { name: 'Figma' },
-      { name: 'Vercel' },
-      { name: 'GitHub Actions' },
-    ],
-  },
+];
+
+export const otherTechnologies: Skill[] = [
+  { name: "C#" },
+  { name: "Java" },
+  { name: "Supabase" },
+  { name: "Prisma" },
+  { name: "Expo" },
+  { name: "Vercel" },
 ];
