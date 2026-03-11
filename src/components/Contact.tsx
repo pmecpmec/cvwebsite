@@ -27,7 +27,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" className="py-32 noise bg-cream-200/40">
+    <section id="contact" className="py-32 noise bg-cream-200/40 relative z-10">
       <div className="section-container relative z-10">
         <motion.div
           ref={ref}
@@ -62,7 +62,7 @@ export default function Contact() {
             <a
               id="email-btn"
               href="mailto:pmecdev@gmail.com"
-              className={`relative group inline-flex items-center gap-2.5 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 ${
+              className={`contact-email-btn relative group inline-flex items-center gap-2.5 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 ${
                 sparkEmail
                   ? 'bg-accent text-cream-100 shadow-[0_0_24px_rgba(196,114,58,0.35)] scale-105'
                   : 'bg-warm-900 hover:bg-warm-800 text-cream-100 hover:shadow-lg'
@@ -86,7 +86,7 @@ export default function Contact() {
               href="https://www.linkedin.com/in/pedro-eduardo-cardoso-b42042177"
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative inline-flex items-center gap-2 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 ${
+              className={`contact-linkedin-btn relative inline-flex items-center gap-2 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 ${
                 sparkLinkedIn
                   ? 'text-accent border-accent/50 shadow-[0_0_24px_rgba(196,114,58,0.3)] scale-105'
                   : 'text-warm-700 border border-warm-900/15 hover:border-warm-900/30 hover:text-warm-900'

@@ -1,0 +1,41 @@
+.star-border-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.star-border-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  padding: 4px;
+  background: linear-gradient(
+    90deg,
+    #ff8c5a,
+    #e8956a,
+    #ff6b35,
+    #ff8c5a
+  );
+  background-size: 300% 100%;
+  animation: border-shimmer 3s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.9;
+}
+
+@keyframes border-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}

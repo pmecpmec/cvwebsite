@@ -9,7 +9,7 @@ export default function Skills() {
   const { ref, controls } = useScrollReveal();
 
   return (
-    <section id="skills" className="py-32">
+    <section id="skills" className="py-32 relative z-10">
       <div className="section-container">
         <SectionHeading
           label="04 / Skills"
@@ -71,7 +71,7 @@ export default function Skills() {
                     {tier.items.map((skill) => (
                       <span
                         key={skill.name}
-                        className="px-3 py-1.5 text-sm text-warm-600 bg-cream-200/60 border border-cream-300/60 rounded-lg hover:text-warm-700 hover:border-cream-400/80 transition-colors"
+                        className="skill-tag px-3 py-1.5 text-sm text-warm-600 bg-cream-200/60 border border-cream-300/60 rounded-lg hover:text-warm-700 hover:border-cream-400/80 transition-colors"
                       >
                         {skill.name}
                       </span>
@@ -87,7 +87,7 @@ export default function Skills() {
             variants={fadeUp}
             className="lg:w-56 shrink-0"
           >
-            <div className="opacity-80 border border-cream-300/50 rounded-2xl p-5 bg-cream-50/60">
+            <div className="other-technologies-panel opacity-80 border border-cream-300/50 rounded-2xl p-5 bg-cream-50/60">
               <h4 className="font-mono text-[10px] uppercase tracking-widest text-accent/70 mb-3">
                 Other Technologies I've Used
               </h4>
@@ -95,7 +95,7 @@ export default function Skills() {
                 {otherTechnologies.map((skill) => (
                   <span
                     key={skill.name}
-                    className="px-2 py-1 text-xs text-warm-600/90 border border-cream-300/40 rounded-md"
+                    className="other-technologies-tag px-2 py-1 text-xs text-warm-600/90 border border-cream-300/40 rounded-md"
                   >
                     {skill.name}
                   </span>

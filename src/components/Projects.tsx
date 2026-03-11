@@ -58,13 +58,13 @@ function SwapCard({ project }: { project: Project }) {
           {project.tech.slice(0, 4).map((t) => (
             <span
               key={t}
-              className="font-mono text-[10px] px-2 py-0.5 bg-cream-200/80 text-warm-700 rounded border border-cream-300/60 uppercase tracking-wider"
+              className="project-tech-tag font-mono text-[10px] px-2 py-0.5 bg-cream-200/80 text-warm-700 rounded border border-cream-300/60 uppercase tracking-wider"
             >
               {t}
             </span>
           ))}
           {project.tech.length > 4 && (
-            <span className="font-mono text-[10px] px-2 py-0.5 text-warm-600">
+            <span className="project-tech-tag font-mono text-[10px] px-2 py-0.5 text-warm-600">
               +{project.tech.length - 4}
             </span>
           )}
@@ -86,7 +86,7 @@ export default function Projects() {
     <>
       <section
         id="projects"
-        className="relative py-32 noise bg-cream-200/40"
+        className="relative py-32 noise bg-cream-200/40 z-10"
       >
 
         <div className="section-container relative z-10">

@@ -43,6 +43,29 @@
   }
 }
 
+/* Fade-in animation for StarBorder overlay */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Smooth transitions for makeover mode */
+html,
+body,
+.card,
+button,
+a {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
 @layer components {
   .section-container {
     @apply max-w-5xl mx-auto px-6 sm:px-8;
@@ -95,5 +118,206 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1;
+  }
+}
+
+/* Makeover Mode Dark Theme */
+.makeover-mode {
+  --color-bg-base: #0a0806;
+  --color-bg-elevated: rgba(26, 20, 18, 0.85);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e5d5c8;
+  --color-accent: #ff8c5a;
+  --color-border: rgba(232, 149, 106, 0.2);
+}
+
+html.makeover-mode,
+body.makeover-mode {
+  background: #0a0806 !important;
+}
+
+.makeover-mode body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+}
+
+/* Cards with backdrop blur */
+.makeover-mode .card {
+  background-color: var(--color-bg-elevated);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: var(--color-border);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(232, 149, 106, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Force bright text */
+.makeover-mode h1,
+.makeover-mode h2,
+.makeover-mode h3,
+.makeover-mode h4,
+.makeover-mode h5,
+.makeover-mode h6,
+.makeover-mode p,
+.makeover-mode span,
+.makeover-mode li {
+  color: var(--color-text-primary) !important;
+}
+
+.makeover-mode .text-warm-800,
+.makeover-mode .text-warm-700,
+.makeover-mode .text-warm-600 {
+  color: var(--color-text-secondary) !important;
+}
+
+.makeover-mode .text-accent {
+  color: var(--color-accent) !important;
+}
+
+.makeover-mode .bg-cream-50,
+.makeover-mode .bg-cream-100,
+.makeover-mode .bg-cream-200 {
+  background: var(--color-bg-elevated) !important;
+}
+
+.makeover-mode .bg-accent {
+  background-color: var(--color-accent) !important;
+}
+
+.makeover-mode .bg-warm-900,
+.makeover-mode .hover\:bg-warm-800:hover {
+  background-color: rgba(245, 240, 232, 0.95) !important;
+}
+
+.makeover-mode .text-cream-100 {
+  color: #1a150d !important;
+}
+
+/* Buttons glow - exclude nav/menu and easter egg indicator */
+.makeover-mode button:not([aria-label*='menu']):not([aria-label*='Back to top']):not(.easter-egg-indicator-btn),
+.makeover-mode a.button {
+  background-color: rgba(255, 140, 90, 0.1);
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+  box-shadow: 0 0 20px rgba(255, 140, 90, 0.2);
+  transition: all 0.3s ease;
+}
+
+.makeover-mode button:not([aria-label*='menu']):not([aria-label*='Back to top']):not(.easter-egg-indicator-btn):hover,
+.makeover-mode a.button:hover {
+  background-color: var(--color-accent);
+  color: #0a0806;
+  box-shadow: 0 0 30px rgba(255, 140, 90, 0.5);
+}
+
+/* Easter egg indicator - custom hover so text stays visible (was orange-on-orange) */
+.makeover-mode .easter-egg-indicator-btn:hover {
+  background-color: rgba(26, 20, 18, 0.95) !important;
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 24px rgba(255, 140, 90, 0.3);
+}
+
+.makeover-mode .easter-egg-indicator-btn:hover span,
+.makeover-mode .easter-egg-indicator-btn:hover svg {
+  color: var(--color-accent) !important;
+}
+
+
+.makeover-mode header[class*='bg-cream'],
+.makeover-mode .bg-cream-100\/80,
+.makeover-mode .bg-cream-100\/98 {
+  background: rgba(15, 12, 10, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Projects, Experience, Contact, Skills: transparent in makeover so ColorBends shows through */
+.makeover-mode #projects,
+.makeover-mode #experience,
+.makeover-mode #contact,
+.makeover-mode #skills {
+  background: transparent !important;
+}
+
+/* Project cards elevated */
+.makeover-mode #projects .card {
+  background-color: rgba(26, 20, 18, 0.9);
+  border: 1px solid rgba(232, 149, 106, 0.3);
+}
+
+/* Project tech tags - mini card style in makeover mode */
+.makeover-mode .project-tech-tag {
+  background-color: rgba(26, 20, 18, 0.85) !important;
+  border: 1px solid rgba(232, 149, 106, 0.35) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+/* Skills section tags - mini card style in makeover mode */
+.makeover-mode .skill-tag {
+  background-color: rgba(26, 20, 18, 0.85) !important;
+  border: 1px solid rgba(232, 149, 106, 0.35) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+/* Other technologies panel - card style in makeover mode */
+.makeover-mode .other-technologies-panel {
+  background-color: rgba(26, 20, 18, 0.85) !important;
+  border: 1px solid rgba(232, 149, 106, 0.35) !important;
+}
+
+.makeover-mode .other-technologies-tag {
+  background-color: rgba(26, 20, 18, 0.7) !important;
+  border: 1px solid rgba(232, 149, 106, 0.35) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+/* Contact buttons - makeover mode */
+.makeover-mode .contact-email-btn {
+  background-color: rgba(255, 140, 90, 0.2) !important;
+  border: 1px solid rgba(232, 149, 106, 0.5) !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: 0 0 20px rgba(255, 140, 90, 0.2);
+}
+
+.makeover-mode .contact-email-btn:hover {
+  background-color: var(--color-accent) !important;
+  color: #0a0806 !important;
+  box-shadow: 0 0 30px rgba(255, 140, 90, 0.5);
+}
+
+/* LinkedIn - outline style, slightly different from email */
+.makeover-mode .contact-linkedin-btn {
+  background-color: transparent !important;
+  border: 1px solid rgba(232, 149, 106, 0.4) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+.makeover-mode .contact-linkedin-btn:hover {
+  background-color: rgba(255, 140, 90, 0.1) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: 0 0 16px rgba(255, 140, 90, 0.15);
+}
+
+/* Sections elevated */
+.makeover-mode section {
+  position: relative;
+  z-index: 10;
+}
+
+/* Ensure About section image stays visible */
+.makeover-mode #about img[alt='Pedro Eduardo Cardoso'] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .makeover-mode,
+  .makeover-mode * {
+    transition: none !important;
+    animation: none !important;
   }
 }

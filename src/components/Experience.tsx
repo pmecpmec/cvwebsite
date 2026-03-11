@@ -18,7 +18,7 @@ export default function Experience() {
   const { ref, controls } = useScrollReveal();
 
   return (
-    <section id="experience" className="py-32 noise bg-cream-200/40">
+    <section id="experience" className="py-32 noise bg-cream-200/40 relative z-10">
       <div className="section-container relative z-10">
         <SectionHeading
           label="03 / Experience"
@@ -124,7 +124,7 @@ export default function Experience() {
         >
           <button
             onClick={scrollToLinkedIn}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-warm-600 hover:text-accent transition-colors"
+            className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full border border-transparent transition-all duration-300 text-warm-600 hover:text-accent"
           >
             See my full profile on LinkedIn
             <ArrowDown size={15} className="group-hover:translate-y-0.5 transition-transform" />

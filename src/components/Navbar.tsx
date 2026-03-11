@@ -51,13 +51,6 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <button
-              onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
-              className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-warm-500 border border-warm-900/10 rounded-lg hover:border-warm-900/20 hover:text-warm-700 transition-all"
-              aria-label="Open command palette"
-            >
-              <kbd>⌘K</kbd>
-            </button>
           </div>
 
           <button

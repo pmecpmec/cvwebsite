@@ -48,7 +48,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden z-10">
       {/* Particles */}
       <div className="absolute inset-0 pointer-events-none">
         <Suspense fallback={null}>
