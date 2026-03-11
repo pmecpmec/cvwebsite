@@ -16,15 +16,17 @@ export default function EasterEggIndicator() {
         type="button"
         onClick={handleClick}
         disabled={!hasDiscovered}
+        tabIndex={hasDiscovered ? 0 : -1}
         aria-label={hasDiscovered ? 'Toggle easter egg mode' : 'Easter egg not discovered yet'}
         className={`easter-egg-indicator-btn
           flex items-center gap-2 px-4 py-2 rounded-full border shadow-lg
           transition-all duration-500 ease-out
+          ${!hasDiscovered ? 'pointer-events-none' : ''}
           ${isMakeover
             ? 'bg-accent/10 backdrop-blur-sm border-accent/30 animate-fade-in cursor-pointer hover:scale-105'
             : hasDiscovered
               ? 'bg-cream-200 border-cream-400 opacity-60 cursor-pointer hover:opacity-80'
-              : 'bg-cream-200 border-cream-400 opacity-40 cursor-not-allowed'
+              : 'bg-cream-200 border-cream-400 opacity-40 cursor-not-allowed select-none'
           }
         `}
       >

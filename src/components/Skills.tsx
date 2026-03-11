@@ -3,7 +3,7 @@ import { fadeUp, stagger } from "@/animations/variants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Tilt from "react-parallax-tilt";
 import SectionHeading from "./ui/SectionHeading";
-import { skillTiers, otherTechnologies } from "@/data/skills";
+import { skillTiers, experienceWith } from "@/data/skills";
 
 export default function Skills() {
   const { ref, controls } = useScrollReveal();
@@ -82,17 +82,17 @@ export default function Skills() {
             ))}
           </motion.div>
 
-          {/* Side panel - Other Technologies I've Used */}
+          {/* Side panel - Experience With */}
           <motion.div
             variants={fadeUp}
             className="lg:w-56 shrink-0"
           >
             <div className="other-technologies-panel opacity-80 border border-cream-300/50 rounded-2xl p-5 bg-cream-50/60">
               <h4 className="font-mono text-[10px] uppercase tracking-widest text-accent/70 mb-3">
-                Other Technologies I've Used
+                Experience With
               </h4>
               <div className="flex flex-wrap gap-1.5">
-                {otherTechnologies.map((skill) => (
+                {experienceWith.map((skill) => (
                   <span
                     key={skill.name}
                     className="other-technologies-tag px-2 py-1 text-xs text-warm-600/90 border border-cream-300/40 rounded-md"

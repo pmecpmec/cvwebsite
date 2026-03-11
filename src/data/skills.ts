@@ -70,20 +70,9 @@ export const skillTiers: SkillTier[] = [
       { name: "Docker" },
     ],
   },
-  {
-    tier: "EXPERIENCE WITH",
-    items: [
-      { name: "C#" },
-      { name: "Java" },
-      { name: "Supabase" },
-      { name: "Prisma" },
-      { name: "Expo" },
-      { name: "Vercel" },
-    ],
-  },
 ];
 
-export const otherTechnologies: Skill[] = [
+export const experienceWith: Skill[] = [
   { name: "C#" },
   { name: "Java" },
   { name: "Supabase" },
