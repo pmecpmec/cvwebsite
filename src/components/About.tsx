@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, stagger } from '@/animations/variants';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { useRef } from 'react';
@@ -6,10 +7,39 @@ import SectionHeading from './ui/SectionHeading';
 import StarBorder from './ui/StarBorder';
 import { useMakeover } from '@/context/MakeoverContext';
 
+const HINT_STORAGE_KEY = 'frontendHintDismissed';
+
 export default function About() {
   const { ref, controls } = useScrollReveal();
   const imgRef = useRef<HTMLDivElement>(null);
   const { isMakeover, toggleMakeover } = useMakeover();
+  const [showHint, setShowHint] = useState(false);
+  const [hintDismissed, setHintDismissed] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem(HINT_STORAGE_KEY)) {
+      setHintDismissed(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showHint) {
+      const timer = setTimeout(() => setShowHint(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showHint]);
+
+  const handleEasterEggClick = () => {
+    toggleMakeover();
+    localStorage.setItem(HINT_STORAGE_KEY, 'true');
+    setHintDismissed(true);
+    setShowHint(false);
+  };
+
+  const handleShowHint = () => {
+    if (!hintDismissed) setShowHint(true);
+  };
+
   const { scrollYProgress } = useScroll({
     target: imgRef,
     offset: ['start end', 'end start'],
@@ -62,12 +92,55 @@ export default function About() {
               I'm especially drawn to{' '}
               <button
                 type="button"
-                onClick={toggleMakeover}
+                onClick={handleEasterEggClick}
+                onMouseEnter={handleShowHint}
+                onMouseLeave={() => setShowHint(false)}
+                onTouchStart={handleShowHint}
+                onFocus={handleShowHint}
+                onBlur={() => setShowHint(false)}
                 className="relative inline-block text-warm-900 font-medium cursor-pointer group/fe focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-sm"
                 aria-label={isMakeover ? 'Revert to normal view' : 'Toggle front-end mode (Easter egg)'}
               >
-                <span className="relative z-10 group-hover/fe:text-accent transition-colors duration-300">front-end development</span>
-                <span className="absolute bottom-0 left-0 w-full h-[3px] bg-accent/20 rounded-full group-hover/fe:h-full group-hover/fe:bg-accent/[0.08] transition-all duration-300" />
+                <span className="relative inline-block z-10 text-skill-accent hover:text-accent transition-colors duration-300 border-b-2 border-skill-accent/30 hover:border-accent/50">
+                  front-end development
+                  <AnimatePresence>
+                    {showHint && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                        animate={{
+                          opacity: 1,
+                          y: -5,
+                          scale: [1, 1.05, 1],
+                          boxShadow: [
+                            '0 10px 25px -5px rgba(255, 107, 53, 0.08)',
+                            '0 10px 30px -5px rgba(255, 107, 53, 0.2)',
+                            '0 10px 25px -5px rgba(255, 107, 53, 0.08)',
+                          ],
+                        }}
+                        exit={{ opacity: 0, y: -10, scale: 0.8 }}
+                        transition={{
+                          type: 'spring',
+                          damping: 15,
+                          stiffness: 300,
+                          scale: {
+                            repeat: Infinity,
+                            duration: 1.5,
+                            ease: 'easeInOut',
+                          },
+                          boxShadow: {
+                            repeat: Infinity,
+                            duration: 1.5,
+                            ease: 'easeInOut',
+                          },
+                        }}
+                        className="absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-cream-200 text-warm-700 text-xs font-mono rounded-lg shadow-lg border border-skill-accent/30 whitespace-nowrap pointer-events-none z-50"
+                      >
+                        ✨ Click me!
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-cream-200 rotate-45 border-r border-b border-skill-accent/30" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </span>
               </button>{' '}
               because I enjoy seeing ideas come to life in the browser. Building interfaces that feel smooth, responsive, and intentional is something I genuinely enjoy.
             </motion.p>

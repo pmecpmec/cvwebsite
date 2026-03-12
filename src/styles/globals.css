@@ -107,6 +107,15 @@ a {
     @apply w-full;
   }
 
+  /* Skills section - unified tile system */
+  .skills-tile {
+    @apply bg-cream-50/80 border border-cream-300/50;
+  }
+
+  .skills-tile:hover {
+    @apply border-cream-400/70 bg-cream-50 shadow-card;
+  }
+
   .noise {
     position: relative;
   }
@@ -118,6 +127,12 @@ a {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1;
+  }
+
+  /* Projects section: use lightweight static pattern instead of expensive feTurbulence (causes lag with card animations) */
+  #projects.noise::before {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23000' fill-opacity='0.02'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23000' fill-opacity='0.02'/%3E%3C/svg%3E");
+    background-size: 4px 4px;
   }
 }
 
@@ -259,6 +274,24 @@ body.makeover-mode {
   background-color: rgba(26, 20, 18, 0.85) !important;
   border: 1px solid rgba(232, 149, 106, 0.35) !important;
   color: var(--color-text-secondary) !important;
+}
+
+/* Filter tabs container (Skills + Experience) - match skills-tile in makeover mode */
+.makeover-mode .filter-tabs-container {
+  background-color: rgba(26, 20, 18, 0.7) !important;
+  border-color: rgba(232, 149, 106, 0.2) !important;
+}
+
+/* Skills section tiles - makeover mode */
+.makeover-mode .skills-tile {
+  background-color: rgba(26, 20, 18, 0.7) !important;
+  border-color: rgba(232, 149, 106, 0.2) !important;
+}
+
+.makeover-mode .skills-tile:hover {
+  background-color: rgba(26, 20, 18, 0.9) !important;
+  border-color: rgba(232, 149, 106, 0.4) !important;
+  box-shadow: 0 0 20px rgba(255, 140, 90, 0.15);
 }
 
 /* Other technologies panel - card style in makeover mode */

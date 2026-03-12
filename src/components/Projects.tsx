@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/animations/variants';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -7,6 +7,8 @@ import SectionHeading from './ui/SectionHeading';
 import CardSwap from './ui/CardSwap';
 import ProjectModal from './ui/ProjectModal';
 import { projects, type Project } from '@/data/projects';
+import { useTechFilter } from '@/context/TechFilterContext';
+import { X } from 'lucide-react';
 
 function StatusDot({ status }: { status: string }) {
   const color =
@@ -81,6 +83,16 @@ function SwapCard({ project }: { project: Project }) {
 export default function Projects() {
   const { ref, controls } = useScrollReveal();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { selectedTech, clearFilter } = useTechFilter();
+
+  const filteredProjects = useMemo(() => {
+    if (!selectedTech) return projects;
+    return projects.filter((p) =>
+      p.tech.some((t) => t.toLowerCase() === selectedTech.toLowerCase())
+    );
+  }, [selectedTech]);
+
+  const displayProjects = filteredProjects.length > 0 ? filteredProjects : projects;
 
   return (
     <>
@@ -90,12 +102,31 @@ export default function Projects() {
       >
 
         <div className="section-container relative z-10">
-          <SectionHeading
-            label="02 / Projects"
-            title="Things I've built"
-            description="A selection of projects I've worked on, from idea to deployment."
-            center
-          />
+          <div className="mb-16">
+            <SectionHeading
+              label="02 / Projects"
+              title="Things I've built"
+              description={
+                selectedTech
+                  ? `Projects using ${selectedTech}`
+                  : "A selection of projects I've worked on, from idea to deployment."
+              }
+              center
+            />
+            {selectedTech && (
+              <div className="text-center mt-2">
+                <button
+                  type="button"
+                  onClick={clearFilter}
+                  className="inline-flex items-center gap-1.5 text-sm text-accent hover:text-accent-dark transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+                  aria-label="Clear filter"
+                >
+                  <X size={14} />
+                  Clear filter
+                </button>
+              </div>
+            )}
+          </div>
 
           <motion.div
             ref={ref}
@@ -105,7 +136,7 @@ export default function Projects() {
             className="flex justify-center"
           >
             <CardSwap
-              items={projects}
+              items={displayProjects}
               width={340}
               height={400}
               delay={4500}

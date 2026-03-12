@@ -26,6 +26,7 @@ export default {
           dark: '#A85E2D',
           muted: 'rgba(196, 114, 58, 0.12)',
         },
+        'skill-accent': '#FF6B35',
         border: 'rgba(44, 36, 24, 0.08)',
       },
       fontFamily: {

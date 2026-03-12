@@ -13,6 +13,7 @@ import CommandPalette from './components/ui/CommandPalette';
 import ColorBends from './components/ui/ColorBends';
 import EasterEggIndicator from './components/ui/EasterEggIndicator';
 import { MakeoverProvider, useMakeover } from './context/MakeoverContext';
+import { TechFilterProvider } from './context/TechFilterContext';
 
 function AppContent() {
   const appRef = useRef<HTMLDivElement>(null);
@@ -77,7 +78,9 @@ function AppContent() {
 export default function App() {
   return (
     <MakeoverProvider>
-      <AppContent />
+      <TechFilterProvider>
+        <AppContent />
+      </TechFilterProvider>
     </MakeoverProvider>
   );
 }
